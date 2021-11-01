@@ -6,15 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("")
-public class UserController {
+public class AdminController {
 
-    @GetMapping(value = "/")
-    public String getHomePage() {
-        return "/index";
-    }
-
-    @GetMapping(value = "/user")
-    public String getUserPage() {
-        return "/user";
+    @GetMapping(value = "/admin")
+    public String getAdminPage() {
+        return "admin";
     }
 }
