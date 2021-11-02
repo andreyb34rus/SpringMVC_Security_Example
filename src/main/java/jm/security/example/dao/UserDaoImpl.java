@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 @Repository
@@ -28,5 +29,12 @@ public class UserDaoImpl implements UserDao {
         query.setParameter("userNameParam", name);
         return (User) query.getSingleResult();
     }
+
+    @Override
+    public List<User> getAllUsers() {
+        Query query = sessionFactory.getCurrentSession().createQuery("from User u");
+        return query.getResultList();
+    }
+
 }
 
