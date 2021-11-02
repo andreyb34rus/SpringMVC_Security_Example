@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
         return (User) query.getSingleResult();
     }
 
+    @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
         Query query = sessionFactory.getCurrentSession().createQuery("from User u");

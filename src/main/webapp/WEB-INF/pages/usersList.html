@@ -22,6 +22,7 @@
     <tbody>
     <tr th:each="user : ${users}">
         <td th:text="${user.getId()}">value</td>
+        <td th:text="${user.getName()}">value</td>
         <td th:text="${user.getPassword()}">value</td>
         <td th:text="${user.getRoles()}">value</td>
         <td>
@@ -36,6 +37,10 @@
 <br/>
 <form th:method="GET" th:action="@{/admin/newUser}">
     <input type="submit" value="add user"/>
+</form>
+<br>
+<form th:action="@{/logout}" method="POST">
+    <input type="submit" value="Logout"/>
 </form>
 </body>
 </html>
