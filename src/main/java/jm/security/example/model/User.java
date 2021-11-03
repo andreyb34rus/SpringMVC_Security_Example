@@ -56,6 +56,19 @@ public class User implements UserDetails {
         this.name = name;
     }
 
+    public String getRolesAsString() {
+        boolean first = true;
+        String s = "";
+        for (Role role : getRoles()) {
+            if (!first) {
+                s += ", ";
+            }
+            s += role.getRole();
+            first = false;
+        }
+        return s;
+    }
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
