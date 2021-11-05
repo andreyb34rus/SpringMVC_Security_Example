@@ -2,6 +2,7 @@ package jm.security.example.dao;
 
 import jm.security.example.model.Role;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,14 @@ public class RoleDaoImpl implements RoleDao{
     @Override
     public Role getRoleById(long id) {
         return sessionFactory.getCurrentSession().find(Role.class, id);
+    }
+
+    @Transactional
+    @Override
+    public Role getRoleByName(String name) {
+         Query query = sessionFactory.getCurrentSession().createQuery("from Role r where r.role = :nameParam");
+         query.setParameter("nameParam", name);
+        return (Role) query.getSingleResult();
     }
 
     @Transactional

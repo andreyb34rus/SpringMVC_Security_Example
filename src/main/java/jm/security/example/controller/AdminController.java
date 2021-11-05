@@ -26,6 +26,7 @@ public class AdminController {
     @Autowired
     RoleService roleService;
 
+
     @GetMapping(value = "")
     public String getAdminPage(Model model) {
         model.addAttribute("users", userService.getAllUsers());
@@ -33,18 +34,20 @@ public class AdminController {
     }
 
     @GetMapping(value = "/newUser")
-    public String showNewUserPage(Model model) {
-        model.addAttribute("emptyUser", new User());
-        return "/newUser";
+    public ModelAndView showNewUserPage(Model model) {
+        ModelAndView mav = new ModelAndView();
+        mav.setViewName("/newUser");
+        mav.addObject("emptyUser", new User());
+        mav.addObject("allRolesList", roleService.getAllRoles());
+        return mav;
     }
 
     @PostMapping("/addUser")
-    public String createUser(@ModelAttribute User user, @RequestParam(value = "selectRoles[]") String[] array) {
-        Set<Role> setOfRoles = new HashSet<>();
-        for (String s : array) {
-            setOfRoles.add(roleService.getRoleById(Integer.valueOf(s)));
+    public String createUser(@ModelAttribute User user,
+                             @RequestParam(value = "checkboxResult") String[] checkboxResult) {
+        for (String s : checkboxResult) {
+            user.addRole(roleService.getRoleByName(s));
         }
-        user.setRoles(setOfRoles);
         userService.save(user);
         return "redirect:/admin";
     }

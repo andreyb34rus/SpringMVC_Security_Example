@@ -8,7 +8,7 @@
 <h3>Fill in person data</h3>
 <!-- th:action - куда отправляем данные из формы -->
 <!-- th:object  - объект передаваемый контроллером -->
-<form th:method="POST"  th:action="@{/admin/addUser}" th:object="${emptyUser}">
+<form th:method="POST" th:action="@{/admin/addUser}" th:object="${emptyUser}">
     <label for="name">login name: </label>
     <input type="text" th:field="*{name}" id="name"/>
     <br/> <br/>
@@ -16,11 +16,17 @@
     <input type="text" th:field="*{password}" id="password"/>
     <br/>
     <p>
-        <select name="selectRoles[]" required multiple id="selectRoles">
-            <option value="1">ADMIN</option>
-            <option value="2">USER</option>
-        </select>
-        <label for="selectRoles">Roles</label>
+
+    <ul style="list-style-type:none;">
+        <li th:each="checkedRole: ${allRolesList}">
+            <input type="checkbox"
+                   name="checkboxResult"
+                   th:value="${checkedRole}"/>
+            <label
+                    th:text="${checkedRole}"></label>
+        </li>
+    </ul>
+
     </p>
     <br/>
     <input type="submit" value="save User"/>
