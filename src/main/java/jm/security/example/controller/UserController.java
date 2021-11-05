@@ -1,6 +1,5 @@
 package jm.security.example.controller;
 
-import jm.security.example.service.UserDetailsServiceImpl;
 import jm.security.example.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @GetMapping(value = "/")
+    @GetMapping(value = {"/", "/index"})
     public String getHomePage() {
         return "/index";
     }

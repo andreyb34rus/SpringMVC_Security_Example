@@ -1,6 +1,5 @@
 package jm.security.example.dao;
 
-import jm.security.example.model.Role;
 import jm.security.example.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -29,6 +28,12 @@ public class UserDaoImpl implements UserDao {
         return (User) query.getSingleResult();
     }
 
+    @Transactional
+    @Override
+    public User getUserById(long id) {
+        return sessionFactory.getCurrentSession().find(User.class, id);
+    }
+
     @Transactional(readOnly = true)
     @Override
     public List<User> getAllUsers() {
@@ -40,6 +45,12 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void save(User user) {
         sessionFactory.getCurrentSession().save(user);
+    }
+
+    @Transactional
+    @Override
+    public void update(User user) {
+        sessionFactory.getCurrentSession().update(user);
     }
 
     @Transactional

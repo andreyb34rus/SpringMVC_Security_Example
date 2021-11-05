@@ -1,7 +1,6 @@
 package jm.security.example.service;
 
 import jm.security.example.dao.RoleDao;
-import jm.security.example.dao.UserDao;
 import jm.security.example.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

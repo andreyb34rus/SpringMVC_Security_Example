@@ -1,7 +1,6 @@
 package jm.security.example.dao;
 
 import jm.security.example.model.Role;
-import jm.security.example.model.User;
 
 import java.util.List;
 
