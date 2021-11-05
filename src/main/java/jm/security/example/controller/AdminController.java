@@ -51,4 +51,10 @@ public class AdminController {
         userService.save(user);
         return "redirect:/admin";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
+        userService.delete(id);
+        return "redirect:/admin";
+    }
 }

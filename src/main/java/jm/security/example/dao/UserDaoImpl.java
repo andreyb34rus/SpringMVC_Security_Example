@@ -2,6 +2,7 @@ package jm.security.example.dao;
 
 import jm.security.example.model.Role;
 import jm.security.example.model.User;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void save(User user) {
         sessionFactory.getCurrentSession().save(user);
+    }
+
+    @Transactional
+    @Override
+    public void delete(long id) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(session.find(User.class, id));
     }
 }
 

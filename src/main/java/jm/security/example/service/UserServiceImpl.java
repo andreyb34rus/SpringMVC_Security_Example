@@ -28,4 +28,9 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         userDao.save(user);
     }
+
+    @Override
+    public void delete(long id) {
+        userDao.delete(id);
+    }
 }
