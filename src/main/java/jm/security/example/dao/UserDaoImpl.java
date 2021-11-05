@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -37,5 +35,10 @@ public class UserDaoImpl implements UserDao {
         return query.getResultList();
     }
 
+    @Transactional
+    @Override
+    public void save(User user) {
+        sessionFactory.getCurrentSession().save(user);
+    }
 }
 

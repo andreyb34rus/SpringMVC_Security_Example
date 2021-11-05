@@ -5,8 +5,8 @@ import jm.security.example.model.User;
 
 import java.util.List;
 
-public interface UserDao {
-    User getUserByName(String name);
-    List<User> getAllUsers();
-    void save(User user);
+public interface RoleDao {
+
+    Role getRoleById(long id);
+    List<Role> getAllRoles();
 }

@@ -1,6 +1,7 @@
 package jm.security.example.service;
 
 import jm.security.example.dao.UserDao;
+import jm.security.example.model.Role;
 import jm.security.example.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,5 +22,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
+    }
+
+    @Override
+    public void save(User user) {
+        userDao.save(user);
     }
 }
